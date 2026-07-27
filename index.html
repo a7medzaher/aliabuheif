@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>نتيجة الثانوية العامة 2026 - ali abu heif</title>
+    <style>
+        /* ===== التصميم الرسمي ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(145deg, #f0f4fa 0%, #d9e2ef 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .card {
+            background: #ffffff;
+            max-width: 550px;
+            width: 100%;
+            border-radius: 42px;
+            padding: 40px 35px;
+            box-shadow: 0 25px 50px -8px rgba(0, 20, 40, 0.25),
+                        0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+            transition: transform 0.2s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .card:hover {
+            transform: scale(1.01);
+        }
+
+        /* رأس الصفحة */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e6edf5;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a2b4c;
+            letter-spacing: 0.5px;
+        }
+
+        .header h1 span {
+            color: #c9a84c;
+            background: #f8f2e0;
+            padding: 0 8px;
+            border-radius: 8px;
+        }
+
+        .header .sub {
+            display: block;
+            font-size: 16px;
+            color: #4a5b7a;
+            margin-top: 6px;
+            font-weight: 500;
+            background: #eef3fa;
+            padding: 6px 14px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .header .sub i {
+            font-style: normal;
+            background: #1a2b4c;
+            color: #fff;
+            padding: 0 10px;
+            border-radius: 20px;
+            margin: 0 4px;
+        }
+
+        /* شعار / أيقونة */
+        .logo-icon {
+            font-size: 42px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        /* النموذج */
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #1f334f;
+            font-size: 15px;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        .form-group label i {
+            color: #c9a84c;
+            margin-left: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #dce4ee;
+            border-radius: 30px;
+            font-size: 16px;
+            background: #f9fcff;
+            transition: 0.25s;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .form-group input:focus {
+            border-color: #1a2b4c;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(26, 43, 76, 0.08);
+        }
+
+        .form-group input::placeholder {
+            color: #a0b2ca;
+            font-weight: 400;
+        }
+
+        /* زر العرض */
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: #1a2b4c;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.25s;
+            box-shadow: 0 8px 18px -6px rgba(26, 43, 76, 0.3);
+            margin-top: 8px;
+            font-family: inherit;
+        }
+
+        .btn-submit:hover {
+            background: #2a3f64;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -8px rgba(26, 43, 76, 0.4);
+        }
+
+        .btn-submit:active {
+            transform: scale(0.97);
+        }
+
+        /* حاوية النتيجة */
+        .result-box {
+            margin-top: 30px;
+            padding: 20px 15px;
+            background: #f8faff;
+            border-radius: 30px;
+            border: 2px dashed #c9d8ec;
+            text-align: center;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .result-box .msg {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a2b4c;
+            line-height: 1.4;
+        }
+
+        .result-box .msg .highlight {
+            color: #b22234;
+            background: #ffe6e6;
+            padding: 0 12px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-top: 6px;
+        }
+
+        .result-box .emoji-big {
+            font-size: 52px;
+            display: block;
+            margin: 6px 0 2px;
+            animation: shake 0.6s infinite alternate ease-in-out;
+        }
+
+        .result-box .laugh-text {
+            font-size: 22px;
+            color: #3d5a80;
+            font-weight: 600;
+            margin-top: 4px;
+            letter-spacing: 2px;
+        }
+
+        /* تأثير اهتزاز للضحك */
+        @keyframes shake {
+            0% { transform: rotate(-4deg) scale(1); }
+            100% { transform: rotate(4deg) scale(1.1); }
+        }
+
+        .shake {
+            animation: shake 0.5s infinite alternate ease-in-out;
+        }
+
+        /* رسالة فارغة */
+        .result-box .empty-msg {
+            color: #9aafca;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        /* تذييل */
+        .footer {
+            margin-top: 28px;
+            text-align: center;
+            font-size: 14px;
+            color: #6b7f9c;
+            border-top: 1px solid #e6edf5;
+            padding-top: 18px;
+            letter-spacing: 0.3px;
+        }
+
+        .footer strong {
+            color: #1a2b4c;
+        }
+
+        /* استجابة */
+        @media (max-width: 480px) {
+            .card {
+                padding: 28px 18px;
+            }
+            .header h1 {
+                font-size: 22px;
+            }
+            .result-box .msg {
+                font-size: 22px;
+            }
+            .result-box .emoji-big {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+
+        <!-- الرأس -->
+        <div class="header">
+            <span class="logo-icon">🎓</span>
+            <h1>
+                نتيجة <span>الثانوية</span> العامة
+            </h1>
+            <span class="sub">
+                <i>٢٠٢٦</i>  ·  ali abu heif
+            </span>
+        </div>
+
+        <!-- النموذج -->
+        <form id="examForm" autocomplete="off">
+            <div class="form-group">
+                <label for="studentName"><i>👤</i> اسم الطالب</label>
+                <input type="text" id="studentName" placeholder="اكتب الاسم بالكامل" required />
+            </div>
+            <div class="form-group">
+                <label for="seatNumber"><i>🔢</i> رقم الجلوس</label>
+                <input type="number" id="seatNumber" placeholder="أدخل رقم الجلوس" required />
+            </div>
+            <button type="submit" class="btn-submit">📋 عرض النتيجة</button>
+        </form>
+
+        <!-- منطقة عرض النتيجة -->
+        <div class="result-box" id="resultBox">
+            <span class="empty-msg">⏳ انتظر ظهور النتيجة...</span>
+        </div>
+
+        <!-- تذييل -->
+        <div class="footer">
+            <strong>ali abu heif</strong> &bull; نظام النتائج الرسمي ٢٠٢٦
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const form = document.getElementById('examForm');
+            const resultBox = document.getElementById('resultBox');
+
+            // دالة لعرض النتيجة (دائماً "حظ سعيد المرة القادمة" مع ضحك)
+            function showResult(name, seat) {
+                // تنظيف المحتوى السابق
+                resultBox.innerHTML = '';
+
+                // إنشاء العناصر
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'msg';
+
+                // جملة مخصصة مع الاسم ورقم الجلوس (اختياري)
+                const nameDisplay = name.trim() || 'الطالب';
+                const seatDisplay = seat || 'غير محدد';
+
+                // النص الرئيسي
+                const mainText = document.createElement('div');
+                mainText.innerHTML = `
+                    <span style="display:block; font-size:18px; color:#3d5a80; margin-bottom:6px;">
+                        ${nameDisplay} · رقم الجلوس ${seatDisplay}
+                    </span>
+                    <span class="highlight">حظ سعيد المرة القادمة</span>
+                `;
+                msgDiv.appendChild(mainText);
+
+                // الإيموجي الضاحك
+                const emoji = document.createElement('span');
+                emoji.className = 'emoji-big shake';
+                emoji.textContent = '😂🤣';
+                msgDiv.appendChild(emoji);
+
+                // نص ضحك إضافي
+                const laugh = document.createElement('div');
+                laugh.className = 'laugh-text';
+                laugh.textContent = 'ههههههههه 😜';
+                msgDiv.appendChild(laugh);
+
+                // إضافة كل شيء إلى الصندوق
+                resultBox.appendChild(msgDiv);
+
+                // إضافة تأثير صوتي بسيط (اختياري) - باستخدام Web Audio API
+                try {
+                    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    // نغمة ضحك قصيرة (تأثير بسيط)
+                    const oscillator = audioCtx.createOscillator();
+                    const gainNode = audioCtx.createGain();
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioCtx.destination);
+
+                    oscillator.frequency.setValueAtTime(880, audioCtx.currentTime);
+                    oscillator.frequency.setValueAtTime(620, audioCtx.currentTime + 0.1);
+                    oscillator.frequency.setValueAtTime(880, audioCtx.currentTime + 0.2);
+                    oscillator.frequency.setValueAtTime(700, audioCtx.currentTime + 0.3);
+
+                    gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+
+                    oscillator.start(audioCtx.currentTime);
+                    oscillator.stop(audioCtx.currentTime + 0.5);
+                } catch (e) {
+                    // في حال عدم دعم الصوت أو خطأ، نتجاهل
+                }
+
+                // إضافة اهتزاز للصندوق نفسه
+                resultBox.style.borderColor = '#b22234';
+                resultBox.style.background = '#fff9f9';
+                setTimeout(() => {
+                    resultBox.style.borderColor = '#c9d8ec';
+                    resultBox.style.background = '#f8faff';
+                }, 800);
+            }
+
+            // معالجة إرسال النموذج
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const nameInput = document.getElementById('studentName');
+                const seatInput = document.getElementById('seatNumber');
+
+                const name = nameInput.value.trim();
+                const seat = seatInput.value.trim();
+
+                // تحقق من وجود بيانات (حتى لو فارغة نعرض النتيجة)
+                // لكن نعرض دائماً نفس الرسالة
+                showResult(name || 'طالب', seat || '----');
+
+                // (اختياري) مسح الحقول بعد العرض؟ نتركها كما هي.
+                // نعيد تعيين border للصندوق بعد فترة
+            });
+
+            // عند تحميل الصفحة نعرض رسالة ترحيبية
+            window.addEventListener('load', function() {
+                // نضع رسالة افتراضية
+                resultBox.innerHTML = `<span class="empty-msg">📌 أدخل بياناتك واضغط "عرض النتيجة"</span>`;
+            });
+
+        })();
+    </script>
+
+</body>
+</html>
