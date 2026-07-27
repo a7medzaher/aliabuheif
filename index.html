@@ -1,172 +1,204 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>نتيجة الثانوية العامة 2026 - ali abu heif</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة نتائج الثانوية العامة 2026</title>
+    <!-- مكتبة قراءة ملفات الإكسل -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
         /* ===== التصميم الرسمي ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif;
         }
 
         body {
-            font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(145deg, #f0f4fa 0%, #d9e2ef 100%);
+            background: linear-gradient(135deg, #eef2f7 0%, #c9d6e8 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            margin: 0;
         }
 
-        .card {
-            background: #ffffff;
-            max-width: 550px;
+        /* الحاوية الرئيسية */
+        .container {
+            max-width: 580px;
             width: 100%;
-            border-radius: 42px;
+            background: #ffffff;
+            border-radius: 40px;
             padding: 40px 35px;
-            box-shadow: 0 25px 50px -8px rgba(0, 20, 40, 0.25),
-                        0 0 0 1px rgba(255, 255, 255, 0.6) inset;
-            transition: transform 0.2s ease;
-            backdrop-filter: blur(2px);
+            box-shadow: 0 25px 50px -8px rgba(0, 20, 40, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: 0.3s;
         }
 
-        .card:hover {
-            transform: scale(1.01);
-        }
-
-        /* رأس الصفحة */
-        .header {
+        /* الشعار */
+        .logo-area {
             text-align: center;
             margin-bottom: 30px;
-            border-bottom: 2px solid #e6edf5;
+            border-bottom: 3px solid #e2e9f2;
             padding-bottom: 20px;
         }
 
-        .header h1 {
-            font-size: 28px;
+        .logo-area .icon {
+            font-size: 45px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .logo-area h1 {
+            font-size: 26px;
             font-weight: 700;
-            color: #1a2b4c;
+            color: #0b1d36;
             letter-spacing: 0.5px;
         }
 
-        .header h1 span {
-            color: #c9a84c;
-            background: #f8f2e0;
-            padding: 0 8px;
-            border-radius: 8px;
-        }
-
-        .header .sub {
-            display: block;
-            font-size: 16px;
-            color: #4a5b7a;
-            margin-top: 6px;
-            font-weight: 500;
-            background: #eef3fa;
-            padding: 6px 14px;
-            border-radius: 30px;
-            display: inline-block;
-            margin-top: 10px;
-        }
-
-        .header .sub i {
-            font-style: normal;
-            background: #1a2b4c;
-            color: #fff;
+        .logo-area h1 span {
+            color: #a8872b;
+            background: #f7f2e3;
             padding: 0 10px;
-            border-radius: 20px;
-            margin: 0 4px;
+            border-radius: 30px;
         }
 
-        /* شعار / أيقونة */
-        .logo-icon {
-            font-size: 42px;
-            margin-bottom: 6px;
+        .logo-area .sub-title {
+            display: inline-block;
+            background: #0b1d36;
+            color: #fff;
+            padding: 4px 22px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 6px;
+        }
+
+        /* الأقسام */
+        .section {
             display: block;
         }
 
-        /* النموذج */
+        .section.hidden {
+            display: none;
+        }
+
+        /* النماذج */
         .form-group {
-            margin-bottom: 22px;
+            margin-bottom: 18px;
         }
 
         .form-group label {
             display: block;
             font-weight: 600;
-            color: #1f334f;
+            color: #1b3150;
             font-size: 15px;
-            margin-bottom: 6px;
-            letter-spacing: 0.3px;
+            margin-bottom: 5px;
         }
 
         .form-group label i {
-            color: #c9a84c;
+            color: #a8872b;
             margin-left: 6px;
         }
 
-        .form-group input {
+        .form-group input,
+        .form-group select {
             width: 100%;
             padding: 14px 18px;
             border: 2px solid #dce4ee;
             border-radius: 30px;
-            font-size: 16px;
-            background: #f9fcff;
+            font-size: 15px;
+            background: #fafcff;
             transition: 0.25s;
             outline: none;
-            font-family: inherit;
         }
 
-        .form-group input:focus {
-            border-color: #1a2b4c;
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #0b1d36;
+            box-shadow: 0 0 0 4px rgba(11, 29, 54, 0.08);
             background: #ffffff;
-            box-shadow: 0 0 0 4px rgba(26, 43, 76, 0.08);
         }
 
-        .form-group input::placeholder {
-            color: #a0b2ca;
-            font-weight: 400;
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230b1d36' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: left 18px center;
+            background-size: 18px;
         }
 
-        /* زر العرض */
-        .btn-submit {
+        .btn {
             width: 100%;
             padding: 16px;
-            background: #1a2b4c;
+            background: #0b1d36;
             color: #fff;
             border: none;
             border-radius: 50px;
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 700;
-            letter-spacing: 1px;
             cursor: pointer;
             transition: 0.25s;
-            box-shadow: 0 8px 18px -6px rgba(26, 43, 76, 0.3);
+            box-shadow: 0 8px 18px -6px rgba(11, 29, 54, 0.3);
             margin-top: 8px;
-            font-family: inherit;
         }
 
-        .btn-submit:hover {
-            background: #2a3f64;
+        .btn:hover {
+            background: #1b3557;
             transform: translateY(-2px);
-            box-shadow: 0 12px 24px -8px rgba(26, 43, 76, 0.4);
         }
 
-        .btn-submit:active {
+        .btn:active {
             transform: scale(0.97);
         }
 
-        /* حاوية النتيجة */
+        /* رفع الملف */
+        .file-upload-area {
+            background: #f4f8ff;
+            border: 2px dashed #bccfe0;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .file-upload-area:hover {
+            background: #eef4fc;
+            border-color: #0b1d36;
+        }
+
+        .file-upload-area input[type="file"] {
+            display: none;
+        }
+
+        .file-upload-area .file-label {
+            display: block;
+            font-weight: 600;
+            color: #0b1d36;
+            font-size: 16px;
+        }
+
+        .file-upload-area .file-name {
+            display: block;
+            margin-top: 8px;
+            color: #3e5a7a;
+            font-size: 14px;
+            background: #fff;
+            padding: 6px 12px;
+            border-radius: 40px;
+            border: 1px solid #dce4ee;
+        }
+
+        /* صندوق النتيجة */
         .result-box {
-            margin-top: 30px;
-            padding: 20px 15px;
-            background: #f8faff;
+            margin-top: 25px;
+            padding: 22px 15px;
+            background: #f8fbff;
             border-radius: 30px;
-            border: 2px dashed #c9d8ec;
+            border: 2px solid #dce8f5;
             text-align: center;
             min-height: 80px;
             display: flex;
@@ -176,224 +208,313 @@
             transition: 0.3s;
         }
 
-        .result-box .msg {
-            font-size: 28px;
+        .result-box .main-msg {
+            font-size: 26px;
             font-weight: 700;
-            color: #1a2b4c;
-            line-height: 1.4;
+            color: #0b1d36;
         }
 
-        .result-box .msg .highlight {
-            color: #b22234;
-            background: #ffe6e6;
-            padding: 0 12px;
+        .result-box .main-msg .grade {
+            color: #a8872b;
+            background: #f7f2e3;
+            padding: 0 18px;
             border-radius: 40px;
             display: inline-block;
-            margin-top: 6px;
-        }
-
-        .result-box .emoji-big {
-            font-size: 52px;
-            display: block;
-            margin: 6px 0 2px;
-            animation: shake 0.6s infinite alternate ease-in-out;
-        }
-
-        .result-box .laugh-text {
-            font-size: 22px;
-            color: #3d5a80;
-            font-weight: 600;
             margin-top: 4px;
-            letter-spacing: 2px;
         }
 
-        /* تأثير اهتزاز للضحك */
-        @keyframes shake {
-            0% { transform: rotate(-4deg) scale(1); }
-            100% { transform: rotate(4deg) scale(1.1); }
-        }
-
-        .shake {
-            animation: shake 0.5s infinite alternate ease-in-out;
-        }
-
-        /* رسالة فارغة */
-        .result-box .empty-msg {
-            color: #9aafca;
+        .result-box .sub-msg {
             font-size: 18px;
-            font-weight: 500;
+            color: #3e5a7a;
+            margin-top: 8px;
         }
 
-        /* تذييل */
-        .footer {
-            margin-top: 28px;
+        .result-box .not-found {
+            color: #9e6b6b;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .result-box .not-found i {
+            font-style: normal;
+            font-size: 28px;
+        }
+
+        /* رسائل الخطأ */
+        .error-msg {
+            color: #b22234;
+            background: #ffe6e6;
+            padding: 12px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-top: 10px;
             text-align: center;
-            font-size: 14px;
+        }
+
+        .footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 13px;
             color: #6b7f9c;
             border-top: 1px solid #e6edf5;
             padding-top: 18px;
-            letter-spacing: 0.3px;
-        }
-
-        .footer strong {
-            color: #1a2b4c;
         }
 
         /* استجابة */
         @media (max-width: 480px) {
-            .card {
-                padding: 28px 18px;
+            .container {
+                padding: 25px 18px;
             }
-            .header h1 {
-                font-size: 22px;
+            .logo-area h1 {
+                font-size: 20px;
             }
-            .result-box .msg {
-                font-size: 22px;
-            }
-            .result-box .emoji-big {
-                font-size: 40px;
+            .result-box .main-msg {
+                font-size: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="card">
 
-        <!-- الرأس -->
-        <div class="header">
-            <span class="logo-icon">🎓</span>
-            <h1>
-                نتيجة <span>الثانوية</span> العامة
-            </h1>
-            <span class="sub">
-                <i>٢٠٢٦</i>  ·  ali abu heif
-            </span>
+    <div class="container" id="appContainer">
+
+        <!-- ===== قسم الشعار ===== -->
+        <div class="logo-area">
+            <span class="icon">🏛️</span>
+            <h1>بوابة <span>نتائج</span> الطلاب</h1>
+            <span class="sub-title">الثانوية العامة ٢٠٢٦</span>
         </div>
 
-        <!-- النموذج -->
-        <form id="examForm" autocomplete="off">
-            <div class="form-group">
-                <label for="studentName"><i>👤</i> اسم الطالب</label>
-                <input type="text" id="studentName" placeholder="اكتب الاسم بالكامل" required />
+        <!-- ===== 1. صفحة تسجيل الدخول ===== -->
+        <div id="loginSection" class="section">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username"><i>👤</i> اسم المستخدم</label>
+                    <input type="text" id="username" placeholder="أدخل اسم المستخدم" required>
+                </div>
+                <div class="form-group">
+                    <label for="password"><i>🔒</i> كلمة المرور</label>
+                    <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
+                </div>
+                <button type="submit" class="btn">🚪 تسجيل الدخول</button>
+                <div id="loginError" class="error-msg" style="display:none;">⚠️ اسم المستخدم أو كلمة المرور غير صحيحة</div>
+            </form>
+        </div>
+
+        <!-- ===== 2. صفحة البحث والنتائج (تظهر بعد الدخول) ===== -->
+        <div id="searchSection" class="section hidden">
+            <!-- رفع ملف الإكسل -->
+            <div class="file-upload-area" id="fileDropArea">
+                <label for="fileInput" class="file-label">📂 اضغط لرفع ملف النتائج (xlsx)</label>
+                <input type="file" id="fileInput" accept=".xlsx, .xls">
+                <span class="file-name" id="fileNameDisplay">لم يتم رفع ملف بعد</span>
             </div>
-            <div class="form-group">
-                <label for="seatNumber"><i>🔢</i> رقم الجلوس</label>
-                <input type="number" id="seatNumber" placeholder="أدخل رقم الجلوس" required />
+
+            <!-- نموذج البحث -->
+            <form id="searchForm">
+                <div class="form-group">
+                    <label for="studentName"><i>📝</i> اسم الطالب</label>
+                    <input type="text" id="studentName" placeholder="أدخل الاسم كاملاً" required>
+                </div>
+                <div class="form-group">
+                    <label for="seatNumber"><i>🔢</i> رقم الجلوس</label>
+                    <input type="number" id="seatNumber" placeholder="أدخل رقم الجلوس" required>
+                </div>
+                <div class="form-group">
+                    <label for="governorate"><i>📍</i> المحافظة</label>
+                    <select id="governorate" required>
+                        <option value="">-- اختر المحافظة --</option>
+                        <option value="القاهرة">القاهرة</option>
+                        <option value="الإسكندرية">الإسكندرية</option>
+                        <option value="بورسعيد">بورسعيد</option>
+                        <option value="السويس">السويس</option>
+                        <option value="الأقصر">الأقصر</option>
+                        <option value="أسوان">أسوان</option>
+                        <option value="الإسماعيلية">الإسماعيلية</option>
+                        <option value="الدقهلية">الدقهلية</option>
+                        <option value="الشرقية">الشرقية</option>
+                        <option value="الغربية">الغربية</option>
+                        <option value="كفر الشيخ">كفر الشيخ</option>
+                        <option value="المنوفية">المنوفية</option>
+                        <option value="القليوبية">القليوبية</option>
+                        <option value="المنيا">المنيا</option>
+                        <option value="أسيوط">أسيوط</option>
+                        <option value="سوهاج">سوهاج</option>
+                        <option value="قنا">قنا</option>
+                        <option value="البحر الأحمر">البحر الأحمر</option>
+                        <option value="الوادي الجديد">الوادي الجديد</option>
+                        <option value="مطروح">مطروح</option>
+                        <option value="شمال سيناء">شمال سيناء</option>
+                        <option value="جنوب سيناء">جنوب سيناء</option>
+                        <option value="بني سويف">بني سويف</option>
+                        <option value="الفيوم">الفيوم</option>
+                        <option value="دمياط">دمياط</option>
+                        <option value="الغردقة">الغردقة</option>
+                        <option value="مرسى مطروح">مرسى مطروح</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">📋 عرض النتيجة</button>
+            </form>
+
+            <!-- صندوق النتيجة -->
+            <div class="result-box" id="resultBox">
+                <span style="color:#9aafca; font-size:16px;">⏳ يرجى رفع الملف ثم إدخال البيانات</span>
             </div>
-            <button type="submit" class="btn-submit">📋 عرض النتيجة</button>
-        </form>
 
-        <!-- منطقة عرض النتيجة -->
-        <div class="result-box" id="resultBox">
-            <span class="empty-msg">⏳ انتظر ظهور النتيجة...</span>
+            <!-- زر تسجيل الخروج -->
+            <button id="logoutBtn" style="margin-top:15px; background:#6b7f9c; padding:12px; border-radius:50px; border:none; color:#fff; font-weight:bold; width:100%; cursor:pointer;">🚪 تسجيل الخروج</button>
         </div>
 
-        <!-- تذييل -->
-        <div class="footer">
-            <strong>ali abu heif</strong> &bull; نظام النتائج الرسمي ٢٠٢٦
-        </div>
+        <div class="footer">© نظام إدارة النتائج ٢٠٢٦ · جميع الحقوق محفوظة</div>
     </div>
 
     <script>
-        (function() {
-            const form = document.getElementById('examForm');
-            const resultBox = document.getElementById('resultBox');
+        // ============================================================
+        //  🔐  غيّر اسم المستخدم وكلمة المرور هنا
+        // ============================================================
+        const VALID_USERNAME = 'admin';        // ← غيّر هذا
+        const VALID_PASSWORD = 'admin123';     // ← غيّر هذا
+        // ============================================================
 
-            // دالة لعرض النتيجة (دائماً "حظ سعيد المرة القادمة" مع ضحك)
-            function showResult(name, seat) {
-                // تنظيف المحتوى السابق
-                resultBox.innerHTML = '';
+        // متغير لتخزين بيانات الإكسل
+        let excelData = [];
 
-                // إنشاء العناصر
-                const msgDiv = document.createElement('div');
-                msgDiv.className = 'msg';
+        // عناصر DOM
+        const loginSection = document.getElementById('loginSection');
+        const searchSection = document.getElementById('searchSection');
+        const loginForm = document.getElementById('loginForm');
+        const loginError = document.getElementById('loginError');
+        const fileInput = document.getElementById('fileInput');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+        const searchForm = document.getElementById('searchForm');
+        const resultBox = document.getElementById('resultBox');
+        const logoutBtn = document.getElementById('logoutBtn');
 
-                // جملة مخصصة مع الاسم ورقم الجلوس (اختياري)
-                const nameDisplay = name.trim() || 'الطالب';
-                const seatDisplay = seat || 'غير محدد';
-
-                // النص الرئيسي
-                const mainText = document.createElement('div');
-                mainText.innerHTML = `
-                    <span style="display:block; font-size:18px; color:#3d5a80; margin-bottom:6px;">
-                        ${nameDisplay} · رقم الجلوس ${seatDisplay}
-                    </span>
-                    <span class="highlight">حظ سعيد المرة القادمة</span>
-                `;
-                msgDiv.appendChild(mainText);
-
-                // الإيموجي الضاحك
-                const emoji = document.createElement('span');
-                emoji.className = 'emoji-big shake';
-                emoji.textContent = '😂🤣';
-                msgDiv.appendChild(emoji);
-
-                // نص ضحك إضافي
-                const laugh = document.createElement('div');
-                laugh.className = 'laugh-text';
-                laugh.textContent = 'ههههههههه 😜';
-                msgDiv.appendChild(laugh);
-
-                // إضافة كل شيء إلى الصندوق
-                resultBox.appendChild(msgDiv);
-
-                // إضافة تأثير صوتي بسيط (اختياري) - باستخدام Web Audio API
-                try {
-                    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                    // نغمة ضحك قصيرة (تأثير بسيط)
-                    const oscillator = audioCtx.createOscillator();
-                    const gainNode = audioCtx.createGain();
-                    oscillator.connect(gainNode);
-                    gainNode.connect(audioCtx.destination);
-
-                    oscillator.frequency.setValueAtTime(880, audioCtx.currentTime);
-                    oscillator.frequency.setValueAtTime(620, audioCtx.currentTime + 0.1);
-                    oscillator.frequency.setValueAtTime(880, audioCtx.currentTime + 0.2);
-                    oscillator.frequency.setValueAtTime(700, audioCtx.currentTime + 0.3);
-
-                    gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
-                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
-
-                    oscillator.start(audioCtx.currentTime);
-                    oscillator.stop(audioCtx.currentTime + 0.5);
-                } catch (e) {
-                    // في حال عدم دعم الصوت أو خطأ، نتجاهل
-                }
-
-                // إضافة اهتزاز للصندوق نفسه
-                resultBox.style.borderColor = '#b22234';
-                resultBox.style.background = '#fff9f9';
-                setTimeout(() => {
-                    resultBox.style.borderColor = '#c9d8ec';
-                    resultBox.style.background = '#f8faff';
-                }, 800);
+        // === دالة عرض النتيجة ===
+        function displayResult(name, seat, governorate) {
+            if (!excelData || excelData.length === 0) {
+                resultBox.innerHTML = `<div class="not-found"><i>⚠️</i> لم يتم رفع ملف النتائج بعد</div>`;
+                return;
             }
 
-            // معالجة إرسال النموذج
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
+            // البحث عن تطابق (الاسم، رقم الجلوس، المحافظة)
+            const found = excelData.find(row => {
+                const rowName = String(row['الاسم'] || '').trim();
+                const rowSeat = String(row['رقم الجلوس'] || '').trim();
+                const rowGov = String(row['المحافظة'] || '').trim();
 
-                const nameInput = document.getElementById('studentName');
-                const seatInput = document.getElementById('seatNumber');
+                const inputName = String(name).trim();
+                const inputSeat = String(seat).trim();
+                const inputGov = String(governorate).trim();
 
-                const name = nameInput.value.trim();
-                const seat = seatInput.value.trim();
-
-                // تحقق من وجود بيانات (حتى لو فارغة نعرض النتيجة)
-                // لكن نعرض دائماً نفس الرسالة
-                showResult(name || 'طالب', seat || '----');
-
-                // (اختياري) مسح الحقول بعد العرض؟ نتركها كما هي.
-                // نعيد تعيين border للصندوق بعد فترة
+                return rowName === inputName && rowSeat === inputSeat && rowGov === inputGov;
             });
 
-            // عند تحميل الصفحة نعرض رسالة ترحيبية
-            window.addEventListener('load', function() {
-                // نضع رسالة افتراضية
-                resultBox.innerHTML = `<span class="empty-msg">📌 أدخل بياناتك واضغط "عرض النتيجة"</span>`;
-            });
+            if (found) {
+                const grade = found['النتيجة'] || 'تم اجتياز الامتحان';
+                resultBox.innerHTML = `
+                    <div class="main-msg">
+                        ✅ نتيجة الطالب <span style="color:#0b1d36;">${found['الاسم']}</span>
+                        <span class="grade">${grade}</span>
+                    </div>
+                    <div class="sub-msg">رقم الجلوس: ${found['رقم الجلوس']} · محافظة: ${found['المحافظة']}</div>
+                `;
+            } else {
+                resultBox.innerHTML = `
+                    <div class="not-found">
+                        <i>😔</i> لم يتم العثور على بيانات مطابقة
+                        <div style="font-size:16px; font-weight:400; margin-top:10px; color:#5a4a4a;">
+                            نأسف لعدم ظهور نتيجتك، نتمنى لك التوفيق في المرات القادمة.
+                        </div>
+                    </div>
+                `;
+            }
+        }
 
-        })();
+        // === تحميل ملف الإكسل ===
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            fileNameDisplay.textContent = file.name;
+
+            const reader = new FileReader();
+            reader.onload = function(loadEvent) {
+                try {
+                    const data = new Uint8Array(loadEvent.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const json = XLSX.utils.sheet_to_json(firstSheet);
+                    excelData = json;
+
+                    if (excelData.length === 0) {
+                        resultBox.innerHTML = `<div class="not-found"><i>⚠️</i> الملف فارغ أو تنسيقه غير صحيح</div>`;
+                    } else {
+                        resultBox.innerHTML = `<span style="color:#0b1d36; font-weight:600;">✅ تم تحميل ${excelData.length} سجل بنجاح</span>`;
+                    }
+                } catch (error) {
+                    resultBox.innerHTML = `<div class="not-found"><i>❌</i> خطأ في قراءة الملف: تأكد من أنه بصيغة xlsx صالحة</div>`;
+                    console.error(error);
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        });
+
+        // === معالج البحث ===
+        searchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('studentName').value.trim();
+            const seat = document.getElementById('seatNumber').value.trim();
+            const governorate = document.getElementById('governorate').value;
+
+            if (!name || !seat || !governorate) {
+                resultBox.innerHTML = `<div class="not-found"><i>⚠️</i> يرجى إدخال جميع البيانات المطلوبة</div>`;
+                return;
+            }
+
+            displayResult(name, seat, governorate);
+        });
+
+        // === تسجيل الدخول ===
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (username === VALID_USERNAME && password === VALID_PASSWORD) {
+                loginSection.classList.add('hidden');
+                searchSection.classList.remove('hidden');
+                loginError.style.display = 'none';
+                // إعادة تعيين رسالة النتيجة
+                resultBox.innerHTML = `<span style="color:#9aafca; font-size:16px;">📂 قم برفع ملف النتائج أولاً</span>`;
+            } else {
+                loginError.style.display = 'block';
+            }
+        });
+
+        // === تسجيل الخروج ===
+        logoutBtn.addEventListener('click', function() {
+            searchSection.classList.add('hidden');
+            loginSection.classList.remove('hidden');
+            // إعادة تعيين حقول الدخول
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            loginError.style.display = 'none';
+            // إعادة تعيين بيانات الملف (اختياري)
+            excelData = [];
+            fileInput.value = '';
+            fileNameDisplay.textContent = 'لم يتم رفع ملف بعد';
+            resultBox.innerHTML = `<span style="color:#9aafca; font-size:16px;">⏳ يرجى رفع الملف ثم إدخال البيانات</span>`;
+        });
+
+        // === جعل منطقة رفع الملف قابلة للضغط ===
+        document.getElementById('fileDropArea').addEventListener('click', function() {
+            fileInput.click();
+        });
+
+        // رسالة ترحيب عند التحميل
+        console.log('✅ نظام النتائج جاهز. قم بتغيير USERNAME و PASSWORD في الكود.');
     </script>
 
 </body>
